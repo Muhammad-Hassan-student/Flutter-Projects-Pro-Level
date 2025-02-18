@@ -22,8 +22,12 @@ class _MyHomePageState extends State<Counter> {
     });
   }
 
+  RangeValues values = RangeValues(0, 5000);
+
   @override
   Widget build(BuildContext context) {
+    RangeLabels labels =
+        RangeLabels(values.start.toString(), values.end.toString());
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -33,7 +37,7 @@ class _MyHomePageState extends State<Counter> {
           children: [
             RichText(
               text: TextSpan(
-                  style: TextStyle(fontSize: 24, color: Colors.amber),
+                  style: TextStyle(fontSize: 24, color: Colors.deepPurple),
                   text: "Your Counter is",
                   children: [
                     TextSpan(text: " $counter"),
@@ -53,7 +57,22 @@ class _MyHomePageState extends State<Counter> {
                       child: Icon(Icons.minimize),
                     )),
               ],
-            )
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            RangeSlider(
+                activeColor: Colors.deepPurple,
+                inactiveColor: Colors.deepPurple.shade100,
+                min: 0,
+                divisions: 1000,
+                max: 5000,
+                labels: labels,
+                values: values,
+                onChanged: (newValues) {
+                  values = newValues;
+                  setState(() {});
+                })
           ],
         ),
       ),

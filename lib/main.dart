@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/pages/SplashScreen.dart';
 import 'package:flutter_projects/pages/couter.dart';
 
 void main() {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: Counter(),
-      home: BMI(),
+      // home: BMI(),
+      home: SplashScreen(),
     );
   }
 }
@@ -37,6 +39,7 @@ class _BMIState extends State<BMI> {
 
   var color = Colors.white;
   double bmi = 0.0;
+
   calculateBmi() {
     double heightInMeter = 0.0;
     double weight = double.tryParse(wtCon.text) ?? 0.0;
@@ -134,7 +137,14 @@ class _BMIState extends State<BMI> {
                         TextSpan(text: "Your BMI is ${bmi.toStringAsFixed(2)}")
                       ])),
                 ),
-                ElevatedButton(onPressed: calculateBmi, child: Text("Submit"))
+                ElevatedButton(onPressed: calculateBmi, child: Text("Submit")),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Counter()));
+                  },
+                  child: Text("Next"),
+                )
               ],
             ),
           ),
