@@ -37,7 +37,12 @@ class _BMIState extends State<BMI> {
   var feetCon = TextEditingController();
   var result;
 
-  var color = Colors.white;
+  var color = LinearGradient(colors: [
+    Color(0xffb4eee9),
+    Color(0xffd6ead2),
+
+  ],begin: FractionalOffset(1.0, 0.0),end: FractionalOffset(0.0, 1.0));
+
   double bmi = 0.0;
 
   calculateBmi() {
@@ -55,13 +60,25 @@ class _BMIState extends State<BMI> {
         print(bmi);
         if (bmi > 25) {
           result = "Over Weight ";
-          color = Colors.orange;
+          color = LinearGradient(colors: [
+            Color(0xffff5858),
+            Color(0xfff09819),
+          ]);
+
         } else if (bmi < 18) {
           result = "Under weight ";
-          color = Colors.red;
+          color = LinearGradient(colors: [
+            Color(0xffff0844),
+            Color(0xffffb199),
+          ]);
+
         } else {
           result = "You are healthy ";
-          color = Colors.green;
+          color = LinearGradient(colors: [
+            Color(0xff43e97b),
+            Color(0xff38f9d7),
+          ]);
+
         }
       });
     } else {
@@ -90,8 +107,12 @@ class _BMIState extends State<BMI> {
             )),
       ),
       body: Container(
+
         decoration: BoxDecoration(
-          color: color,
+          //
+
+          gradient: color,
+
         ),
         child: Center(
           child: Container(
@@ -100,50 +121,58 @@ class _BMIState extends State<BMI> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: wtCon,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    label: Text("Enter your Weight"),
+                    label: Text("Enter your Weight",style: TextStyle(color: Colors.white),),
                   ),
                 ),
                 TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: inchCon,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    label: Text("Enter your Heignt in (inch)"),
+                    label: Text("Enter your Heignt in (inch)",style: TextStyle(color: Colors.white),),
                   ),
                 ),
                 TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: feetCon,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    label: Text("Enter your height in (feet)"),
+                    label: Text("Enter your height in (feet)",style: TextStyle(color: Colors.white),),
                   ),
                 ),
+                SizedBox(height: 20,),
+
                 Center(
+
                   child: RichText(
+
                       text: TextSpan(
                           style: TextStyle(
-                            backgroundColor: Colors.grey,
-                            color: Colors.black,
+
+                            color: Colors.white,
                           ),
                           children: [
                         TextSpan(
                           style: TextStyle(
-                            color: color,
+                            // color: color,
                           ),
                           text: result,
                         ),
                         TextSpan(text: "Your BMI is ${bmi.toStringAsFixed(2)}")
                       ])),
                 ),
+                SizedBox(height: 20,),
                 ElevatedButton(onPressed: calculateBmi, child: Text("Submit")),
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Counter()));
                   },
-                  child: Text("Next"),
+                  child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 26,fontFamily: "Charmonman", fontWeight: FontWeight.w600),),
                 )
               ],
             ),
