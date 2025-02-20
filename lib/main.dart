@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/pages/FooAnimation.dart';
 import 'package:flutter_projects/pages/SplashScreen.dart';
 import 'package:flutter_projects/pages/couter.dart';
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: Counter(),
       // home: BMI(),
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: FooAnimation(),
     );
   }
 }
@@ -40,8 +42,7 @@ class _BMIState extends State<BMI> {
   var color = LinearGradient(colors: [
     Color(0xffb4eee9),
     Color(0xffd6ead2),
-
-  ],begin: FractionalOffset(1.0, 0.0),end: FractionalOffset(0.0, 1.0));
+  ], begin: FractionalOffset(1.0, 0.0), end: FractionalOffset(0.0, 1.0));
 
   double bmi = 0.0;
 
@@ -64,21 +65,18 @@ class _BMIState extends State<BMI> {
             Color(0xffff5858),
             Color(0xfff09819),
           ]);
-
         } else if (bmi < 18) {
           result = "Under weight ";
           color = LinearGradient(colors: [
             Color(0xffff0844),
             Color(0xffffb199),
           ]);
-
         } else {
           result = "You are healthy ";
           color = LinearGradient(colors: [
             Color(0xff43e97b),
             Color(0xff38f9d7),
           ]);
-
         }
       });
     } else {
@@ -107,12 +105,10 @@ class _BMIState extends State<BMI> {
             )),
       ),
       body: Container(
-
         decoration: BoxDecoration(
           //
 
           gradient: color,
-
         ),
         child: Center(
           child: Container(
@@ -125,7 +121,10 @@ class _BMIState extends State<BMI> {
                   controller: wtCon,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    label: Text("Enter your Weight",style: TextStyle(color: Colors.white),),
+                    label: Text(
+                      "Enter your Weight",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
                 TextField(
@@ -133,7 +132,10 @@ class _BMIState extends State<BMI> {
                   controller: inchCon,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    label: Text("Enter your Heignt in (inch)",style: TextStyle(color: Colors.white),),
+                    label: Text(
+                      "Enter your Heignt in (inch)",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
                 TextField(
@@ -141,38 +143,48 @@ class _BMIState extends State<BMI> {
                   controller: feetCon,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    label: Text("Enter your height in (feet)",style: TextStyle(color: Colors.white),),
+                    label: Text(
+                      "Enter your height in (feet)",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
-                SizedBox(height: 20,),
-
+                SizedBox(
+                  height: 20,
+                ),
                 Center(
-
                   child: RichText(
-
                       text: TextSpan(
                           style: TextStyle(
-
                             color: Colors.white,
                           ),
                           children: [
                         TextSpan(
                           style: TextStyle(
-                            // color: color,
-                          ),
+                              // color: color,
+                              ),
                           text: result,
                         ),
                         TextSpan(text: "Your BMI is ${bmi.toStringAsFixed(2)}")
                       ])),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(onPressed: calculateBmi, child: Text("Submit")),
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Counter()));
                   },
-                  child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 26,fontFamily: "Charmonman", fontWeight: FontWeight.w600),),
+                  child: Text(
+                    "Next",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontFamily: "Charmonman",
+                        fontWeight: FontWeight.w600),
+                  ),
                 )
               ],
             ),
